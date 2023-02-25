@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+    <div class="main_container">
+        <div class="sub_cont1">
+            <header><span><img src="./favicon.png" alt="logo"></span>LIBRARY</header>
+            <div class="form">
+                <form action="">
+                    <div class="booktitle">
+                        <label for="booktitle" class="label1
+                        ">What is the title of the book?</label>
+                        <input autocomplete="off" type="text" name="booktitle" id="booktitle">
+                        <span id="spant">Please fill out this field</span>
+                    </div>
+                    <div class="bookauthor">
+                        <label for="bookauthor" class="label2
+                        ">Who is the author of this book?</label>
+                        <input autocomplete="off" type="text" name="bookauthor" id="bookauthor">
+                        <span id="spana">Please fill out this field</span>
+                    </div>
+                    <div class="bookpages">
+                        <label for="booktitle" class="label3
+                        ">How many pages are in this book?</label>
+                        <input autocomplete="off" type="text" name="bookpages" id="bookpages">
+                        <span id="spanp">Please input a value greater than 0</span>
+                    </div>
+                    <div class="bookread">
+                        <label for="bookread">
+                            <div id="checkbox"></div>
+                            <input type="checkbox" name="bookread" id="bookread">
+                            <img class="check" src="./check.png" alt="">
+                            I have read this book!</label>
+                    </div>
+
+                    <button id="fbtn" type="submit">ADD A NEW BOOK</button>
+
+                </form>
+            </div>
+        </div>
+        <div class="sub_cont2"></div>
+    </div>
+    
+</body>
+</html>
