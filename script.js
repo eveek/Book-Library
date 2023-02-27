@@ -9,13 +9,17 @@ const authorError = document.getElementById("spana")
 const titleError = document.getElementById("spant")
 const pagesError = document.getElementById("spanp")
 
+
+
+
+// ANIMATION
+
 function addTrans (label){
     label.classList.add("labeltrans")
 }
 function removeTrans (label){
     label.classList.remove("labeltrans")
 }
-
 
 authorInput.addEventListener("focus", () => addTrans(authorLabel));
 titleInput.addEventListener("focus", () => addTrans(titleLabel));
@@ -36,6 +40,8 @@ pagesInput.addEventListener("blur", () => {
         removeTrans(pagesLabel)
     }
 })
+
+// FORM VALIDATION
 
 formbutton.addEventListener("click", e => {
     e.preventDefault()
