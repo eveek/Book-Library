@@ -8,8 +8,89 @@ const formbutton = document.getElementById("fbtn")
 const authorError = document.getElementById("spana")
 const titleError = document.getElementById("spant")
 const pagesError = document.getElementById("spanp")
+const bookStatus = document.getElementById("bookread")
+const form = document.getElementById("form")
+const tableBody = document.querySelector("tbody")
+const bookRead = document.getElementById("book_read")
+const bookUnread = document.getElementById("book_unread")
+const totalBook = document.getElementById("total_book")
+const delAll = document.getElementById("del_all")
+
+const bookLibrary = []
+
+let readBooks = 0
+let unreadBooks = 0
+let totalBooks = 0
+
+bookRead.textContent = readBooks 
+bookUnread.textContent = unreadBooks
+totalBook.textContent = totalBooks
+
+function formReset(){
+    form.reset()
+    removeTrans(authorLabel)
+    removeTrans(pagesLabel)
+    removeTrans(titleLabel)
+
+    tableBody.innerHTML = ""
+    readBooks = 0
+    unreadBooks = 0
+    totalBooks = 0
+}
 
 
+function addBookToLibrary( title, author, pages, read){
+    const book = new Book( title, author, pages, read)
+    bookLibrary.push(book)
+    displayLibrary()
+}
+
+function Book( title, author, pages, read){
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
+}
+
+function displayLibrary(){
+    for (let i = 0; i < bookLibrary.length; i++){
+        const tr = document.createElement("tr")
+        tr.setAttribute("id", `${i}`)
+        const td1 = document.createElement("td")
+        td1.innerHTML = `<strong class="hide">TITLE:</strong><span>${bookLibrary[i].title}</span>`
+        tr.appendChild(td1)
+
+        const td2 = document.createElement("td")
+        td2.innerHTML = `<strong class="hide">AUTHOR:</strong><span>${bookLibrary[i].author}</span>`
+        tr.appendChild(td2)
+
+        const td3 = document.createElement("td")
+        td3.innerHTML = `<strong class="hide">PAGES:</strong><span>${bookLibrary[i].pages}</span>`
+        tr.appendChild(td3)
+
+        const td4 = document.createElement("td")
+        if(bookLibrary[i].read == true){
+            td4.innerHTML = `<strong class="hide">READ:</strong><span><img class="rimg" src="./IMAGES/good.png" alt=""></span>`
+            readBooks += 1
+        } else if (bookLibrary[i].read == false){
+            td4.innerHTML =`<strong class="hide">READ:</strong><span><img class="rimg" src="./IMAGES/cancel.png" alt=""></span>`
+            unreadBooks += 1
+        }
+        tr.appendChild(td4)
+
+        const td5 = document.createElement("td")
+        td5.innerHTML = `<button class="btn">Delete</button>`
+        tr.appendChild(td5)
+        tableBody.appendChild(tr)
+
+        totalBooks = bookLibrary.length
+    }
+
+    bookRead.textContent = readBooks 
+    bookUnread.textContent = unreadBooks
+    totalBook.textContent = totalBooks
+
+}
 
 
 // ANIMATION
@@ -21,7 +102,8 @@ function removeTrans (label){
     label.classList.remove("labeltrans")
 }
 
-authorInput.addEventListener("focus", () => addTrans(authorLabel));
+function formAnimation(){
+    authorInput.addEventListener("focus", () => addTrans(authorLabel));
 titleInput.addEventListener("focus", () => addTrans(titleLabel));
 pagesInput.addEventListener("focus", () => addTrans(pagesLabel));
 
@@ -40,11 +122,14 @@ pagesInput.addEventListener("blur", () => {
         removeTrans(pagesLabel)
     }
 })
+}
 
 // FORM VALIDATION
 
-formbutton.addEventListener("click", e => {
+form.addEventListener("submit", e => {
     e.preventDefault()
+    // console.log(authorInput.value)
+    let pageStatus
 
     if(authorInput.value == ""){
         authorError.style.visibility = "visible"
@@ -56,9 +141,49 @@ formbutton.addEventListener("click", e => {
     } else {
         titleError.style.visibility = "hidden"
     }
-    if(isNaN(pagesInput.value) || pagesInput.value == ""){
+    if(isNaN(pagesInput.value) || pagesInput.value == "" || pagesInput.value <= 0){
         pagesError.style.visibility = "visible"
+        pageStatus = false
     } else {
         pagesError.style.visibility = "hidden"
+        pageStatus = true
+    }
+
+    if( authorInput.value !== "" && titleInput.value !== "" &&  pageStatus == true){
+        if ( bookStatus.checked) {
+            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, true)
+        } else if ( !bookStatus.checked){
+            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, false)
+        }
+        formReset()
+        displayLibrary()
     }
 })
+
+// DELETE ALL
+delAll.addEventListener("click", ()=> {
+    bookLibrary.splice(0)
+    tableBody.innerHTML = ""
+    readBooks = 0
+    unreadBooks = 0
+    totalBooks = 0
+    displayLibrary()
+})
+
+tableBody.addEventListener("click", e => {
+    const target = e.target
+    const tParent = target.parentElement
+    const grandParent = tParent.parentElement
+    const index = grandParent.id
+    if (target.classList.contains("btn")){
+        bookLibrary.splice(index, 1)
+        tableBody.innerHTML = ""
+        readBooks = 0
+        unreadBooks = 0
+        totalBooks = 0
+        displayLibrary()
+    }
+    // console.log(grandParent.id)
+})
+
+formAnimation()

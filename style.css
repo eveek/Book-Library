@@ -163,6 +163,15 @@ form button{
     padding: 18px 0;
 }
 
+.bookhead button{
+    padding: 18px 18px;
+    font-size: 18px;
+    color: #fff;
+    background-color: rgb(251, 125, 125);
+    border: none;
+    cursor: pointer;
+}
+
 .bookhead div:last-child{
     background-color: rgb(251, 125, 125);
     padding: 18px;
@@ -206,10 +215,19 @@ tr{
     border-bottom: 1px solid black;
 }
 
-tr td:last-child span{
+tr td:last-child button{
     background-color:rgb(251, 125, 125);
     padding: 15px;
     color: #fff;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+tr td:nth-child(4) span{
+    padding: 10px;
+    display: flex;
+    width: fit-content;
     cursor: pointer;
 }
 
