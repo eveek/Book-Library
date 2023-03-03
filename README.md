@@ -1,6 +1,6 @@
 # THE ODIN PROJECT BOOK LIBRARY
 
-## [LIVE WEBSITE][https://eveek.github.io/book-library/]
+## [LIVE WEBSITE](https://eveek.github.io/Book-Library/)
 
 ## OVERVIEW
 
