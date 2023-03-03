@@ -16,11 +16,16 @@ const bookUnread = document.getElementById("book_unread")
 const totalBook = document.getElementById("total_book")
 const delAll = document.getElementById("del_all")
 
-const bookLibrary = []
-
 let readBooks = 0
 let unreadBooks = 0
 let totalBooks = 0
+
+let bookLibrary = []
+if (localStorage.getItem("book") != null){
+    bookLibrary = JSON.parse(localStorage.getItem("book"))
+    displayLibrary()
+}
+
 
 bookRead.textContent = readBooks 
 bookUnread.textContent = unreadBooks
@@ -52,8 +57,13 @@ function Book( title, author, pages, read){
     this.read = read
 }
 
+
 function displayLibrary(){
-    for (let i = 0; i < bookLibrary.length; i++){
+    localStorage.setItem("book", JSON.stringify(bookLibrary))
+    const arrBookLibrary = JSON.parse(localStorage.getItem("book"))
+
+
+    for (let i = 0; i < arrBookLibrary.length; i++){
         const tr = document.createElement("tr")
         tr.setAttribute("id", `${i}`)
         const td1 = document.createElement("td")
@@ -69,11 +79,11 @@ function displayLibrary(){
         tr.appendChild(td3)
 
         const td4 = document.createElement("td")
-        if(bookLibrary[i].read == true){
-            td4.innerHTML = `<strong class="hide">READ:</strong><span><img class="rimg" src="./IMAGES/good.png" alt=""></span>`
+        if(arrBookLibrary[i].read == true){
+            td4.innerHTML = `<strong class="hide">READ:</strong><span class="status"><img class="rimg" src="./IMAGES/good.png" alt=""></span>`
             readBooks += 1
-        } else if (bookLibrary[i].read == false){
-            td4.innerHTML =`<strong class="hide">READ:</strong><span><img class="rimg" src="./IMAGES/cancel.png" alt=""></span>`
+        } else if (arrBookLibrary[i].read == false){
+            td4.innerHTML =`<strong class="hide">READ:</strong><span class="status"><img class="rimg" src="./IMAGES/cancel.png" alt=""></span>`
             unreadBooks += 1
         }
         tr.appendChild(td4)
@@ -83,14 +93,18 @@ function displayLibrary(){
         tr.appendChild(td5)
         tableBody.appendChild(tr)
 
-        totalBooks = bookLibrary.length
+        totalBooks = arrBookLibrary.length
     }
 
+    // localStorage.setItem("book", JSON.stringify(bookLibrary))
+    // console.log(localStorage.getItem("book"))
+    
     bookRead.textContent = readBooks 
     bookUnread.textContent = unreadBooks
     totalBook.textContent = totalBooks
-
+    
 }
+
 
 
 // ANIMATION
@@ -183,7 +197,19 @@ tableBody.addEventListener("click", e => {
         totalBooks = 0
         displayLibrary()
     }
-    // console.log(grandParent.id)
+
+    if (target.classList.contains("status")){
+        if (bookLibrary[index].read == true){
+            bookLibrary[index].read = false
+        }else {
+            bookLibrary[index].read = true
+        }
+        tableBody.innerHTML = ""
+        readBooks = 0
+        unreadBooks = 0
+        totalBooks = 0
+        displayLibrary()
+    }
 })
 
 formAnimation()

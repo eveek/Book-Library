@@ -243,6 +243,7 @@ table, thead, th, tr, td{
 .rimg{
     width: 20px;
     height: auto;
+    pointer-events: none;
 }
 
 /* KEYFRAMES */
