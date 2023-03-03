@@ -96,8 +96,6 @@ function displayLibrary(){
         totalBooks = arrBookLibrary.length
     }
 
-    // localStorage.setItem("book", JSON.stringify(bookLibrary))
-    // console.log(localStorage.getItem("book"))
     
     bookRead.textContent = readBooks 
     bookUnread.textContent = unreadBooks
@@ -142,7 +140,6 @@ pagesInput.addEventListener("blur", () => {
 
 form.addEventListener("submit", e => {
     e.preventDefault()
-    // console.log(authorInput.value)
     let pageStatus
 
     if(authorInput.value == ""){

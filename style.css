@@ -1,8 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&family=Gloock&display=swap');
+
 *, *::after, *::before, html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--main-font);
+}
+
+:root{
+    --main-font: 'Gloock', serif;
+    --blue: rgb(0, 123, 150);
+    --yellow: #ffb700;
+    --lred: rgb(247, 161, 161);
+    --red: rgb(251, 125, 125);
 }
 
 body, html{
@@ -17,7 +27,7 @@ body, html{
 
 .main_container .sub_cont1{
     width: 550px;
-    background-color: rgb(0, 123, 150);
+    background-color: var(--blue);
     padding: 30px 30px;
 }
 .main_container .sub_cont2{
@@ -28,12 +38,13 @@ body, html{
 /* Header */
 header{
     font-size: 50px;
-    font-family: serif;
+    font-family: 'Gajraj One', cursive;
     margin: auto;
     width: fit-content;
     font-weight: bold;
-    color: #ffb700;
+    color: var(--yellow);
     cursor: pointer;
+    letter-spacing: 1px;
 }
 
 header span{
@@ -65,7 +76,7 @@ form div{
 form div span{
     font-size: 16px;
     margin-top: 5px;
-    color: rgb(247, 161, 161);
+    color: var(--lred);
     visibility: hidden;
 }
 
@@ -132,7 +143,7 @@ form button{
     padding: 18px;
     font-size: 18px;
     letter-spacing: 2px;
-    background-color: #ffb700;
+    background-color: var(--yellow);
     color: rgb(0, 123, 150);
     border: 2px solid white;
     cursor: pointer;
@@ -157,6 +168,7 @@ form button{
     font-weight: 100;
     color:rgb(0, 123, 150);
     margin: auto;
+    letter-spacing: 1px;
 }
 
 .bookhead div{
@@ -167,13 +179,13 @@ form button{
     padding: 18px 18px;
     font-size: 18px;
     color: #fff;
-    background-color: rgb(251, 125, 125);
+    background-color: var(--red);
     border: none;
     cursor: pointer;
 }
 
 .bookhead div:last-child{
-    background-color: rgb(251, 125, 125);
+    background-color: var(--red);
     padding: 18px;
     color: #ffffff;
     cursor: pointer;
@@ -187,10 +199,11 @@ table{
 }
 
 thead{
-    background-color: #ffb700;
+    background-color: var(--yellow);
     border: none;
     column-gap: 0;
-    border-bottom: 10px solid rgb(0, 123, 150);
+    border-bottom: 10px solid var(--blue);
+    letter-spacing: 1px;
 }
 
 th{
@@ -203,7 +216,7 @@ th{
 
 td{
     padding: 25px;
-    color:rgb(0, 123, 150);
+    color: var(--blue);
 
 }
 
@@ -216,7 +229,7 @@ tr{
 }
 
 tr td:last-child button{
-    background-color:rgb(251, 125, 125);
+    background-color: var(--red);
     padding: 15px;
     color: #fff;
     font-size: 18px;
@@ -306,7 +319,7 @@ table, thead, th, tr, td{
     }
 
     tbody tr:nth-child(odd){
-        background-color: rgb(0, 123, 150);
+        background-color: var(--blue);
     }
     
     tbody tr:nth-child(odd) td{
@@ -331,7 +344,7 @@ table, thead, th, tr, td{
     }
     
     tr span{
-        border-left: 2px solid #ffb700;
+        border-left: 2px solid var(--yellow);
         padding-left: 10px;
         height: fit-content;
     }
@@ -341,7 +354,7 @@ table, thead, th, tr, td{
     }
 
     tbody tr:nth-child(even) td{
-        border-bottom: 1px solid rgb(0, 123, 150);
+        border-bottom: 1px solid var(--blue);
     }
 
         tbody tr:nth-child(even) td:last-child{
